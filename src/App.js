@@ -48,6 +48,32 @@ const App = () => {
     }
 
   }
+  const handleVezNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('*')
+    }else {
+      const sum = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(sum))
+      setOperation('')
+    }
+
+  }
+  const handleDivNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('/')
+    }else {
+      const sum = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(sum))
+      setOperation('')
+    }
+
+  }
 
   const handleEquals = () => {
 
@@ -58,6 +84,12 @@ const App = () => {
             break;
           case '-':
             handleMinusNumbers();
+            break;
+          case '*':
+            handleVezNumbers();
+            break;
+          case '/':
+            handleDivNumbers();
             break;
           default: 
             break;
@@ -71,8 +103,8 @@ const App = () => {
       <Content>
         <Input value={currentNumber}/>
         <Row>
-          <Button label="x"/>
-          <Button label="/"/>
+          <Button label="x" onClick={handleVezNumbers}/>
+          <Button label="/"onClick={handleDivNumbers}/>
           <Button label="c" onClick={handleOnClear}/>
           <Button label="."/>
         </Row>
